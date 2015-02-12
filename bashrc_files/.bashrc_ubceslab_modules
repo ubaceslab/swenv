@@ -1,0 +1,2 @@
+export LMOD_INIT_DIR=$UBCESLAB_SWENV_PREFIX/apps/lmod/lmod-current/lmod/lmod/init
+source $LMOD_INIT_DIR/profile

@@ -1,0 +1,7 @@
+export UBCESLAB_SYSTEMTYPE="sens"
+
+export UBCESLAB_SYSTEMNAME=`hostname | cut -d . -f 1`
+UBCESLAB_SYSTEMNAME+="1"
+export UBCESLAB_SWENV_PREFIX="/$UBCESLAB_SYSTEMNAME/data/shared/software"
+
+export NPROC=24
