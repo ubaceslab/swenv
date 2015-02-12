@@ -5,6 +5,9 @@ on various systems we use. Each of the build scripts encodes the version
 that is being built. If we need to update the version, then we need to rebuild
 the library and its dependencies.
 
+The build scripts are based off work that was originally done with @roystgnr at the PECOS
+Center in the Institute for Computational Engineering and Sciences.
+
 Local Setup Instructions
 ------------------------
 Steps are as follows:
