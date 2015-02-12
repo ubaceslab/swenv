@@ -1,0 +1,45 @@
+#!/bin/sh                                                                                                                                                                                                                                    
+# -*- shell-script -*-
+########################################################################
+#  This is the system wide source file for setting up
+#  modules:
+#
+########################################################################
+
+if [ -z "$USER_IS_ROOT" ]; then
+
+  if [ -z "$MODULEPATH_ROOT" ]; then
+    # We need special Lua.
+    PATH=$UBCESLAB_SWENV_PREFIX/apps/lua/lua-current/bin:$PATH
+    export PATH
+
+    export MANPATH=$UBCESLAB_SWENV_PREFIX/apps/lua/lua-current/man:$MANPATH
+
+    USER=${USER-${LOGNAME}}  # make sure $USER is set
+    export USER
+
+    LMOD_sys=`uname`; export LMOD_sys
+
+    LMOD_arch=`uname -m`
+    if [ "x$LMOD_sys" = xAIX ]; then
+      LMOD_arch=rs6k
+    fi
+    export LMOD_arch
+
+
+    MODULEPATH_ROOT=$UBCESLAB_SWENV_PREFIX/apps/lmod/modulefiles
+    export MODULEPATH_ROOT
+    export LMOD_SETTARG_CMD=":"
+    export LMOD_SETTARG_SUPPORT=no
+    export LMOD_COLORIZE=yes
+    export LMOD_PREPEND_BLOCK=normal
+#    export MODULEPATH=$(/fry1/data/users/pbauman/software/apps/lmod/lmod-5.2.4/lmod/lmod/libexec/addto --append MODULEPATH $MODULEPATH_ROOT/$LMOD_sys $MODULEPATH_ROOT/Core)
+#    export MODULEPATH=$(/fry1/data/users/pbauman/software/apps/lmod/lmod-5.2.4/lmod/lmod/libexec/addto --append MODULEPATH /fry1/data/users/pbauman/software/apps/lmod/lmod-5.2.4/lmod/lmod/modulefiles/Core)
+    export MODULEPATH=$MODULEPATH_ROOT
+
+    export BASH_ENV=$UBCESLAB_SWENV_PREFIX/apps/lmod/lmod-current/lmod/lmod/init/bash
+  fi
+
+  . $UBCESLAB_SWENV_PREFIX/apps/lmod/lmod-current/lmod/lmod/init/bash >/dev/null # Module Support
+
+fi
