@@ -1,0 +1,8 @@
+#!/bin/bash
+
+GMP_VERSION=5.1.3
+MPFR_VERSION=3.1.2
+MPC_VERSION=1.0.2
+./build_gmp.sh $GMP_VERSION
+./build_mpfr.sh $MPFR_VERSION $GMP_VERSION
+./build_mpc.sh $MPC_VERSION $MPFR_VERSION $GMP_VERSION
