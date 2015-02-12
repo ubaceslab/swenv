@@ -8,16 +8,18 @@ the library and its dependencies.
 The build scripts are based off work that was originally done with @roystgnr at the PECOS
 Center in the Institute for Computational Engineering and Sciences.
 
+When running the build scripts, you should run where they are located.
+
 Local Setup Instructions
 ------------------------
 Steps are as follows:
-*   Put the .bashrc_ubceslab_<system>_init in your home directory
-and source it on login. Currently <system> is sens.
+*   Put the .bashrc_ubceslab_system_init in your home directory
+and source it on login. Currently, the only "system" is sens, i.e. .bashrc_ubceslab_sens_init
 *   Run the build_modules.sh script.
-*   Put the .bashrc_ubceslab_modules_init in your home directory
-and source it on login, *after* the .bashrc_ubceslab_<system>_init file.
+*   Put the .bashrc_ubceslab_modules in your home directory
+and source it on login, *after* the .bashrc_ubceslab_system_init file.
 *   Run build scripts for "core" level apps
-  *   build_gcc_deps.sh, build_gcc.sh
+  *   build_gcc_deps.sh, build_gcc_version.sh
   *   build_paraview.sh
   *   build_emacs.sh
   *   build_valgrind.sh
