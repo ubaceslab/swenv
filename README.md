@@ -60,7 +60,7 @@ next to local installs. The scripts look similar but we have a different install
 prefix in them. We separate the list here as a reminder.
 *  Compiler:
   *   build_gsl_version.sh
-  *   build_glpk.sh
+  *   build_glpk_version.sh
   *   build_boost.sh
   *   build_hdf5.sh
   *   build_tbb.sh
