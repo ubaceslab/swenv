@@ -10,6 +10,11 @@ Center in the Institute for Computational Engineering and Sciences.
 
 When running the build scripts, you should run where they are located.
 
+If you get an error about the source not being found, it means that I get a definite
+URL to grab it from, so you need to download it yourself and put it in the directory it
+tells you to, making sure the name matches with the name it is looking for. E.g. with
+Paraview, you will encounter both of these scenarios.
+
 Local Setup Instructions
 ------------------------
 Steps are as follows:
