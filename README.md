@@ -34,6 +34,7 @@ and source it on login, *after* the .bashrc_ubceslab_system_init file.
   *   build_valgrind_version.sh
   *   build_gdb_version.sh
   *   build_autotools_version.sh
+  *   build_doxygen_version.sh
   *   ...
 * Load the compiler, e.g.: module load gcc
 * Run build scripts for "compiler" level apps
