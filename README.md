@@ -61,7 +61,7 @@ prefix in them. We separate the list here as a reminder.
 *  Compiler:
   *   build_gsl_version.sh
   *   build_glpk_version.sh
-  *   build_boost.sh
+  *   build_boost_version.sh
   *   build_hdf5.sh
   *   build_tbb.sh
   *   build_vtk.sh
