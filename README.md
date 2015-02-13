@@ -28,10 +28,12 @@ and source it on login. Currently, the only "system" is sens, i.e. .bashrc_ubces
 and source it on login, *after* the .bashrc_ubceslab_system_init file.
 *   Run build scripts for "core" level apps
   *   build_gcc_deps.sh, build_gcc_version.sh
+  *   build_git_version.sh
   *   build_paraview_version.sh
-  *   build_emacs.sh
-  *   build_valgrind.sh
-  *   build_gdb.sh
+  *   build_emacs_version.sh
+  *   build_valgrind_version.sh
+  *   build_gdb_version.sh
+  *   build_autotools_version.sh
   *   ...
 * Load the compiler, e.g.: module load gcc
 * Run build scripts for "compiler" level apps
