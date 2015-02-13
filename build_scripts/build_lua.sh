@@ -10,10 +10,7 @@ mkdir -p ${UBCESLAB_SWENV_PREFIX:?undefined}/sourcesdir/lua
 (cd $UBCESLAB_SWENV_PREFIX/sourcesdir/lua
 
 if [ ! -f lua-$LUA_VERSION.tar.gz ]; then
-    echo "Couldn't find lua tarball."
-    echo "Download from Lmod Sourceforge Files page"
-    echo "and put it in $UBCESLAB_SWENV_PREFIX/sourcesdir/lua."
-    exit 1;
+   wget --output-document=lua-$LUA_VERSION.tar.gz http://sourceforge.net/projects/lmod/files/lua-$LUA_VERSION.tar.gz/download
 fi
 )
 
