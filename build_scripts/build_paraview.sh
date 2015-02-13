@@ -18,15 +18,14 @@ fi
 )
 
 TOPDIR=${UBCESLAB_SWENV_PREFIX:?undefined}/apps/paraview
-export PARAVIEW_DIR=$TOPDIR/paraview-$PARAVIEW_VERSION
+export PARAVIEW_DIR=$TOPDIR/$PARAVIEW_VERSION
 rm -rf $PARAVIEW_DIR
 
 # For the ParaView tar ball, we just need to untar in the right place
 mkdir -p $TOPDIR
 cd $TOPDIR
 tar xzf $UBCESLAB_SWENV_PREFIX/sourcesdir/paraview/paraview-$PARAVIEW_VERSION.tar.gz
-mkdir -p $TOPDIR/paraview-$PARAVIEW_VERSION/
-mv ParaView-$PARAVIEW_VERSION-Linux-64bit $TOPDIR/$PARAVIEW_VERSION
+mv ParaView-$PARAVIEW_VERSION-Linux-64bit $PARAVIEW_DIR
 
 
 cd $CURRENT_DIR
