@@ -58,13 +58,16 @@ Library Setup Instructions
 For libraries, on some systems we setup in a common place. On others, they sit
 next to local installs. The scripts look similar but we have a different install
 prefix in them. We separate the list here as a reminder.
-*   build_gsl.sh
-*   build_glpk.sh
-*   build_boost.sh
-*   build_hdf5.sh
-*   build_tbb.sh
-*   build_vtk.sh
-*   ...
+*  Compiler:
+  *   build_gsl_version.sh
+  *   build_glpk.sh
+  *   build_boost.sh
+  *   build_hdf5.sh
+  *   build_tbb.sh
+  *   build_vtk.sh
+  *   ...
+* Compiler+MPI:
+  * ...
 
 Library Dependencies
 --------------------
