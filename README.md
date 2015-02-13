@@ -35,6 +35,15 @@ and source it on login, *after* the .bashrc_ubceslab_system_init file.
   *   build_gdb_version.sh
   *   build_autotools_version.sh
   *   build_doxygen_version.sh
+  *   build_anaconda.sh
+    * There is no version for Anaconda because you update it internally using the "conda" command
+      (this is also how you install packages). The build will require
+      you to agree to the license, set the prefix (the script will display the path for you in a
+      message so you can copy it before the installer runs), and do not let it reset your bashrc
+      since a modulefile will be created. After the installer runs, I have conda install numpy, scipy,
+      h5py, sympy, and matplotlib. By module load anaconda, when you run python, you will be able to use
+      those packages. Note I expect that each user will manage their own Anaconda install after this,
+      but this should be enough for you to use matplotlib for data that we generate.
   *   ...
 * Load the compiler, e.g.: module load gcc
 * Run build scripts for "compiler" level apps
