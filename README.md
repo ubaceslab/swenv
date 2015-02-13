@@ -45,6 +45,7 @@ and source it on login, *after* the .bashrc_ubceslab_system_init file.
       those packages. Note I expect that each user will manage their own Anaconda install after this,
       but this should be enough for you to use matplotlib for data that we generate.
   *   build_texlive_version.sh
+  *   build_cmake_version.sh
   *   ... 
 * Load the compiler, e.g.: module load gcc
 * Run build scripts for "compiler" level apps
