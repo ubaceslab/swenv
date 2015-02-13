@@ -15,6 +15,9 @@ URL to grab it from, so you need to download it yourself and put it in the direc
 tells you to, making sure the name matches with the name it is looking for. E.g. with
 Paraview, you will encounter both of these scenarios.
 
+I have tried to include "helper" scripts that include the version number so you just need to run,
+e.g., build_paraview_version.sh.
+
 Local Setup Instructions
 ------------------------
 Steps are as follows:
@@ -25,7 +28,7 @@ and source it on login. Currently, the only "system" is sens, i.e. .bashrc_ubces
 and source it on login, *after* the .bashrc_ubceslab_system_init file.
 *   Run build scripts for "core" level apps
   *   build_gcc_deps.sh, build_gcc_version.sh
-  *   build_paraview.sh
+  *   build_paraview_version.sh
   *   build_emacs.sh
   *   build_valgrind.sh
   *   build_gdb.sh
