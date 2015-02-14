@@ -25,4 +25,5 @@ end
 prepend_path( "PATH", tbb_dir )
 prepend_path( "LD_LIBRARY_PATH", pathJoin(tbb_dir, "lib" ) )
 setenv( "TBB_DIR", tbb_dir )
-setenv( "TBB_VERSION", version )
+-- TBB_VERSION collides with a TBB internal variable
+setenv( "TBB_VERSIONNUM", version )
