@@ -50,7 +50,7 @@ and source it on login, *after* the .bashrc_ubceslab_system_init file.
 * Load the compiler, e.g.: module load gcc
 * Run build scripts for "compiler" level apps
   *   build_mpich_version.sh
-  *   build_openblas.sh
+  *   build_openblas_version.sh
   *   ...
 
 Library Setup Instructions
