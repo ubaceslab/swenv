@@ -64,7 +64,7 @@ prefix in them. We separate the list here as a reminder.
   *   build_boost_version.sh
   *   build_hdf5_version.sh
   *   build_tbb_version.sh
-  *   build_vtk.sh
+  *   build_vtk_version.sh
   *   ...
 * Compiler+MPI:
   * ...
