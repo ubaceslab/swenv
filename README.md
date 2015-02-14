@@ -68,6 +68,7 @@ prefix in them. We separate the list here as a reminder.
   *   ...
 * Compiler+MPI:
   * build_petsc_version.sh
+  * build_libmesh_master.sh
   * ...
 
 Library Dependencies
