@@ -12,8 +12,9 @@ mkdir -p ${UBCESLAB_SWENV_PREFIX:?undefined}/sourcesdir/paraview
 (cd $UBCESLAB_SWENV_PREFIX/sourcesdir/paraview
 
 if [ ! -f paraview-$PARAVIEW_VERSION.tar.gz ]; then
-  echo "Couldn't find ParaView tarball $UBCESLAB_SWENV_PREFIX/sourcesdir/paraview/paraview-$PARAVIEW_VERSION.tar.gz"
-  echo "Need to download from http://www.paraview.org and movie it to the path above."
+  wget  --output-document=paraview-$PARAVIEW_VERSION.tar.gz "http://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v4.3&type=binary&os=linux64&downloadFile=ParaView-4.3.1-Linux-64bit-glibc-2.3.6.tar.gz" 
+  #echo "Couldn't find ParaView tarball $UBCESLAB_SWENV_PREFIX/sourcesdir/paraview/paraview-$PARAVIEW_VERSION.tar.gz"
+  #echo "Need to download from http://www.paraview.org and movie it to the path above."
 fi
 )
 
