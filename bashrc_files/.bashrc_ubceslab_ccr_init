@@ -1,0 +1,7 @@
+export UBCESLAB_SYSTEMTYPE="ccr"
+
+export UBCESLAB_SWENV_PREFIX="/projects/pbauman/software"
+
+export NPROC=4
+
+export MODULEPATH=$UBCESLAB_SWENV_PREFIX/apps/lmod/modulefiles:$MODULEPATH

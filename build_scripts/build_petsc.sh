@@ -31,7 +31,14 @@ export PETSC_DIR=$PWD
 export PETSC_INSTALL_DIR=$PETSC_PREFIX/debug
 export PETSC_ARCH=$PETSC_ARCH_PREFIX-debug
 
+# On CCR, we need to link to -lpmi
+export PETSC_LDFLAGS=""
+if [ ${UBCESLAB_SYSTEMTYPE:?undefined} = "ccr" ]; then
+   export PETSC_LDFLAGS="-lpmi"
+fi
+
 ./config/configure.py  \
+--with-make-np=${NPROC:?4} \
 --prefix=$PETSC_INSTALL_DIR \
 --with-shared-libraries=1 \
 --with-mpi-dir=${MPI_DIR:?undefined} \
@@ -44,9 +51,9 @@ export PETSC_ARCH=$PETSC_ARCH_PREFIX-debug
 --with-scalapack=true --download-scalapack=1 \
 --with-hypre=true --download-hypre=1 \
 --with-blas-lib=[${BLAS_LIBS:?undefined}] \
---with-lapack-lib=[${LAPACK_LIBS:?undefined}]
+--with-lapack-lib=[${LAPACK_LIBS:?undefined}] --LDFLAGS=$PETSC_LDFLAGS
 make clean
-(make MAKE_NP=${NPROC:1} 2>&1 && touch build_cmd_success) | tee make.log
+(make 2>&1 && touch build_cmd_success) | tee make.log
 rm build_cmd_success
 
 make install
@@ -64,6 +71,7 @@ rm -rf $PETSC_INSTALL_DIR
 mkdir -p $PETSC_INSTALL_DIR
 
 ./config/configure.py  \
+--with-make-np=${NPROC:?4} \
 --prefix=$PETSC_INSTALL_DIR \
 --with-debugging=false --COPTFLAGS='-O3 -mavx' --CXXOPTFLAGS='-O3 -mavx' --FOPTFLAGS='-O3' \
 --with-shared-libraries=1 \
@@ -77,10 +85,10 @@ mkdir -p $PETSC_INSTALL_DIR
 --with-scalapack=true --download-scalapack=1 \
 --with-hypre=true --download-hypre=1 \
 --with-blas-lib=[${BLAS_LIBS:?undefined}] \
---with-lapack-lib=[${LAPACK_LIBS:?undefined}]
+--with-lapack-lib=[${LAPACK_LIBS:?undefined}] --LDFLAGS=$PETSC_LDFLAGS
 make clean
 
-(make MAKE_NP=${NPROC:1} 2>&1 && touch build_cmd_success) | tee make.log
+(make 2>&1 && touch build_cmd_success) | tee make.log
 rm build_cmd_success
 
 make install
