@@ -33,7 +33,7 @@ if test "$COMPILER" = intel; then
   TOOLSET=intel-linux
 fi
 
-./bootstrap.sh --with-toolset=${TOOLSET} --prefix=$BOOST_DIR --with-libraries=program_options,system,filesystem,chrono,regex,signals,serialization
+./bootstrap.sh --with-toolset=${TOOLSET} --prefix=$BOOST_DIR --with-libraries=program_options,system,filesystem,chrono,regex,signals,serialization,date_time,thread
 
 rm -rf $BOOST_DIR
 
