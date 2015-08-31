@@ -7,6 +7,14 @@ CURRENT_DIR=$PWD
 
 mkdir -p ${UBCESLAB_SWENV_PREFIX:?undefined}/sourcesdir/antioch
 
+(cd $UBCESLAB_SWENV_PREFIX/sourcesdir/antioch
+if [ ! -d antioch-$ANTIOCH_VERSION ]; then
+   git clone git://github.com/libantioch/antioch.git ./antioch-$ANTIOCH_VERSION
+fi
+   cd antioch-$ANTIOCH_VERSION
+   git pull origin master
+   ./bootstrap
+)
 
 TOPDIR=${UBCESLAB_SWENV_PREFIX:?undefined}/libs/antioch
 export ANTIOCH_DIR=$TOPDIR/$ANTIOCH_VERSION/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/gsl/${GSL_VERSION:?undefined}
@@ -15,12 +23,8 @@ mkdir -p $UBCESLAB_SWENV_PREFIX/builddir
 BUILDDIR=`mktemp -d $UBCESLAB_SWENV_PREFIX/builddir/antioch-XXXXXX`
 cd $BUILDDIR
 
-git clone git://github.com/libantioch/antioch.git
-cd antioch
 
-./bootstrap
-
-(./configure --prefix=$ANTIOCH_DIR 2>&1 && touch build_cmd_success) | tee configure.log
+($UBCESLAB_SWENV_PREFIX/sourcesdir/antioch/antioch-$ANTIOCH_VERSION/configure --prefix=$ANTIOCH_DIR 2>&1 && touch build_cmd_success) | tee configure.log
 
 (make -j ${NPROC:-1} 2>&1 && touch build_cmd_success) | tee make.log
 rm build_cmd_success
