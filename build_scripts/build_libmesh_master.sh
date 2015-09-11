@@ -7,6 +7,14 @@ CURRENT_DIR=$PWD
 
 mkdir -p ${UBCESLAB_SWENV_PREFIX:?undefined}/sourcesdir/libmesh
 
+(cd $UBCESLAB_SWENV_PREFIX/sourcesdir/libmesh
+if [ ! -d libmesh-$LIBMESH_VERSION ]; then
+   git clone git://github.com/libMesh/libmesh.git ./libmesh-$LIBMESH_VERSION
+fi
+   cd libmesh-$LIBMESH_VERSION
+   git pull origin master
+)
+
 
 TOPDIR=${UBCESLAB_SWENV_PREFIX:?undefined}/libs/libmesh
 export LIBMESH_DIR=$TOPDIR/$LIBMESH_VERSION/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/${MPI_IMPLEMENTATION:?undefined}/${MPI_VERSION:?undefined}/petsc/${PETSC_VERSION:?undefined}/${BLAS_IMPLEMENTATION:?undefined}/${BLAS_VERSION:?undefined}/tbb/${TBB_VERSIONNUM:?undefined}/boost/${BOOST_VERSION:?undefined}/hdf5/${HDF5_VERSION:?undefined}/vtk/${VTK_VERSION:?undefined}
@@ -15,10 +23,7 @@ mkdir -p $UBCESLAB_SWENV_PREFIX/builddir
 BUILDDIR=`mktemp -d $UBCESLAB_SWENV_PREFIX/builddir/libmesh-XXXXXX`
 cd $BUILDDIR
 
-git clone git://github.com/libMesh/libmesh.git
-cd libmesh
-
-(./configure METHODS='dbg devel opt' --prefix=$LIBMESH_DIR --enable-everything --with-metis=PETSc 2>&1 && touch build_cmd_success) | tee configure.log
+($UBCESLAB_SWENV_PREFIX/sourcesdir/libmesh/libmesh-$LIBMESH_VERSION/configure METHODS='dbg devel opt' --prefix=$LIBMESH_DIR --enable-everything --with-metis=PETSc 2>&1 && touch build_cmd_success) | tee configure.log
 
 # Let's make sure we actually *found* the stuff we're trying to
 # configure with.  If we didn't, these grep commands will fail.
