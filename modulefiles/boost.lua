@@ -24,4 +24,5 @@ prepend_path( "LD_LIBRARY_PATH", pathJoin(boost_prefix, "lib" ) )
 
 setenv( "BOOST_LIB", pathJoin(boost_prefix, "lib" ) )
 setenv( "BOOST_DIR", boost_prefix )
+setenv( "BOOST_ROOT", boost_prefix )
 setenv( "BOOST_VERSION", version )
