@@ -29,4 +29,4 @@ setenv( "QUESO_DIR", queso_dir )
 setenv( "QUESO_VERSION", version )
 
 prepend_path( "PATH", pathJoin( queso_dir, "bin" ) )
-prepend_path( "LD_LIBRARY_PATH",  pathJoin( queso_dir.."lib" ) )
+prepend_path( "LD_LIBRARY_PATH",  pathJoin( queso_dir, "lib" ) )
