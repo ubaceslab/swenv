@@ -37,7 +37,7 @@ fi
 
 rm -rf $BOOST_DIR
 
-./bjam -j ${NPROC:-1} threading=single install
+./bjam -j ${NPROC:-1} install
 
 cd $UBCESLAB_SWENV_PREFIX
 rm -rf $BUILDDIR || true
