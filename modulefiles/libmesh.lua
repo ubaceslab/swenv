@@ -3,7 +3,6 @@ prereq( "petsc" )
 prereq( "hdf5" )
 prereq( "vtk" )
 prereq( "boost" )
-prereq( "tbb" )
 prereq( "openblas" )
 
 conflict( "libmesh" )
@@ -20,7 +19,7 @@ help(
 "This module loads libMesh "..version.." master branch, compiled with "..compiler.." "..compiler_version.." and "..mpi_implementation.." "..mpi_version
 )
 
-local libmesh_arch = "libmesh/"..version.."/"..compiler.."/"..compiler_version.."/"..mpi_implementation.."/"..mpi_version.."/petsc/"..petsc_version.."/"..blas_implementation.."/"..blas_version.."/tbb/"..tbb_version.."/boost/"..boost_version.."/hdf5/"..hdf5_version.."/vtk/"..vtk_version
+local libmesh_arch = "libmesh/"..version.."/"..compiler.."/"..compiler_version.."/"..mpi_implementation.."/"..mpi_version.."/petsc/"..petsc_version.."/"..blas_implementation.."/"..blas_version.."/boost/"..boost_version.."/hdf5/"..hdf5_version.."/vtk/"..vtk_version
 
 local libmesh_dir = pathJoin( libs_dir, libmesh_arch )
 

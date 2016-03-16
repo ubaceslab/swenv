@@ -17,17 +17,17 @@ fi
 
 
 TOPDIR=${UBCESLAB_SWENV_PREFIX:?undefined}/libs/libmesh
-export LIBMESH_DIR=$TOPDIR/$LIBMESH_VERSION/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/${MPI_IMPLEMENTATION:?undefined}/${MPI_VERSION:?undefined}/petsc/${PETSC_VERSION:?undefined}/${BLAS_IMPLEMENTATION:?undefined}/${BLAS_VERSION:?undefined}/tbb/${TBB_VERSIONNUM:?undefined}/boost/${BOOST_VERSION:?undefined}/hdf5/${HDF5_VERSION:?undefined}/vtk/${VTK_VERSION:?undefined}
+export LIBMESH_DIR=$TOPDIR/$LIBMESH_VERSION/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/${MPI_IMPLEMENTATION:?undefined}/${MPI_VERSION:?undefined}/petsc/${PETSC_VERSION:?undefined}/${BLAS_IMPLEMENTATION:?undefined}/${BLAS_VERSION:?undefined}/boost/${BOOST_VERSION:?undefined}/hdf5/${HDF5_VERSION:?undefined}/vtk/${VTK_VERSION:?undefined}
 
 mkdir -p $UBCESLAB_SWENV_PREFIX/builddir
 BUILDDIR=`mktemp -d $UBCESLAB_SWENV_PREFIX/builddir/libmesh-XXXXXX`
 cd $BUILDDIR
 
-($UBCESLAB_SWENV_PREFIX/sourcesdir/libmesh/libmesh-$LIBMESH_VERSION/configure METHODS='dbg devel opt' --prefix=$LIBMESH_DIR --enable-everything --with-metis=PETSc 2>&1 && touch build_cmd_success) | tee configure.log
+($UBCESLAB_SWENV_PREFIX/sourcesdir/libmesh/libmesh-$LIBMESH_VERSION/configure METHODS='dbg devel opt' --prefix=$LIBMESH_DIR --enable-everything --with-metis=PETSc --with-cppunit-prefix=${CPPUNIT_DIR:?undefined} --disable-glibcxx-debugging 2>&1 && touch build_cmd_success) | tee configure.log
 
 # Let's make sure we actually *found* the stuff we're trying to
 # configure with.  If we didn't, these grep commands will fail.
-for target in MPI PETSC TBB_API BOOST HDF5 VTK; do
+for target in MPI PETSC BOOST HDF5 VTK; do
 grep LIBMESH_HAVE_$target include/libmesh_config.h ||
 (echo Failed to find $target; false)
 done
@@ -52,7 +52,6 @@ echo "local libs_dir = \"$UBCESLAB_SWENV_PREFIX/libs\"" >> $MODULEDIR/$LIBMESH_V
 echo "local petsc_version = \"$PETSC_VERSION\"" >> $MODULEDIR/$LIBMESH_VERSION.lua
 echo "local blas_implementation = \"$BLAS_IMPLEMENTATION\"" >> $MODULEDIR/$LIBMESH_VERSION.lua
 echo "local blas_version = \"$BLAS_VERSION\"" >> $MODULEDIR/$LIBMESH_VERSION.lua
-echo "local tbb_version = \"$TBB_VERSIONNUM\"" >> $MODULEDIR/$LIBMESH_VERSION.lua
 echo "local boost_version = \"$BOOST_VERSION\"" >> $MODULEDIR/$LIBMESH_VERSION.lua
 echo "local hdf5_version = \"$HDF5_VERSION\"" >> $MODULEDIR/$LIBMESH_VERSION.lua
 echo "local vtk_version = \"$VTK_VERSION\"" >> $MODULEDIR/$LIBMESH_VERSION.lua
