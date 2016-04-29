@@ -9,7 +9,7 @@ mkdir -p ${UBCESLAB_SWENV_PREFIX:?undefined}/sourcesdir/glpk
 
 (cd $UBCESLAB_SWENV_PREFIX/sourcesdir/glpk
 if [ ! -f glpk-$GLPK_VERSION.tar.gz ]; then
-  wget http://gnu.mirrorcatalogs.com/glpk/glpk-$GLPK_VERSION.tar.gz 
+  wget http://ftp.gnu.org/gnu/glpk/glpk-$GLPK_VERSION.tar.gz 
 fi
 )
 

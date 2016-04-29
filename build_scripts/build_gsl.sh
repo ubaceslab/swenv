@@ -9,7 +9,7 @@ mkdir -p ${UBCESLAB_SWENV_PREFIX:?undefined}/sourcesdir/gsl
 
 (cd $UBCESLAB_SWENV_PREFIX/sourcesdir/gsl
 if [ ! -f gsl-$GSL_VERSION.tar.gz ]; then
-  wget http://gnu.mirrorcatalogs.com/gsl/gsl-$GSL_VERSION.tar.gz 
+  wget ftp://ftp.gnu.org/gnu/gsl/gsl-$GSL_VERSION.tar.gz 
 fi
 )
 
