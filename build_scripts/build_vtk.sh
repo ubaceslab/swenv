@@ -23,6 +23,16 @@ mkdir -p $UBCESLAB_SWENV_PREFIX/builddir
 BUILDDIR=`mktemp -d $UBCESLAB_SWENV_PREFIX/builddir/vtk-XXXXXX`
 cd $BUILDDIR
 tar -xzf $UBCESLAB_SWENV_PREFIX/sourcesdir/vtk/v$VTK_VERSION.tar.gz
+
+# For GCC >= 6.X.Y, VTK 6.3.0 and 7.0.0 have a bug in their build system
+export COMPILER_MAJOR_VERSION=`echo ${COMPILER_VERSION:?undefined} | cut -d . -f 1`
+echo $COMPILER_MAJOR_VERSION
+if [ "$COMPILER_MAJOR_VERSION" -gt 5 ]; then
+  cd VTK-$VTK_VERSION
+  patch -p0 < $CURRENT_DIR/vtk.patch
+  cd ..
+fi
+
 # CMake builds *really* don't like in-source builds
 mkdir -p build
 cd build
