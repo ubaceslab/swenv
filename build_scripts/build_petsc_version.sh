@@ -1,5 +1,5 @@
-#!/bin/bash
+0#!/bin/bash
 
-PETSC_VERSION=3.6.0
+PETSC_VERSION=3.7.2
 
 ./build_petsc.sh $PETSC_VERSION

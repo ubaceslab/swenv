@@ -18,7 +18,11 @@ Paraview, you will encounter both of these scenarios.
 I have tried to include "helper" scripts that include the version number so you just need to run,
 e.g., build_paraview_version.sh.
 
-Local Setup Instructions
+**Extra fedora dependencies (all obtained using dnf install) : 
+        g++, svn, flex, m4, bison, perl-Thread-Queue.noarch, perl-Digest-MD5
+
+
+Setup Instructions
 ------------------------
 Steps are as follows:
 *   Put the .bashrc_ubceslab_system_init in your home directory
@@ -26,14 +30,14 @@ and source it on login. Currently, the only "system" is sens, i.e. .bashrc_ubces
 *   Run the build_modules.sh script.
 *   Put the .bashrc_ubceslab_modules in your home directory
 and source it on login, *after* the .bashrc_ubceslab_system_init file.
-*   Run build scripts for "core" level apps
-  *   build_gcc_deps.sh, build_gcc_version.sh
+*   Run build scripts for "core" level apps )
+  *   build_gcc_deps.sh, build_gcc_version.sh 
   *   build_git_version.sh
   *   build_paraview_version.sh
   *   build_emacs_version.sh
   *   build_valgrind_version.sh
   *   build_gdb_version.sh
-  *   build_autotools_version.sh
+  *   build_autotools_version.sh 
   *   build_doxygen_version.sh
   *   build_anaconda.sh
     * There is no version for Anaconda because you update it internally using the "conda" command
