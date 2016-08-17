@@ -46,7 +46,7 @@ and source it on login, *after* the .bashrc_ubceslab_system_init file.
       but this should be enough for you to use matplotlib for data that we generate.
   *   build_texlive_version.sh
   *   build_cmake_version.sh
-  *   ... 
+  *   ...
 * Load the compiler, e.g.: module load gcc
 * Run build scripts for "compiler" level apps
   *   build_mpich_version.sh
@@ -63,7 +63,6 @@ prefix in them. We separate the list here as a reminder.
   *   build_glpk_version.sh
   *   build_boost_version.sh
   *   build_hdf5_version.sh
-  *   build_tbb_version.sh
   *   build_vtk_version.sh
   *   ...
 * Compiler+MPI:
@@ -76,6 +75,6 @@ Library Dependencies
 For each of the libraries we build that have dependencies not explictly
 expressed by the module hierarchy, i.e. beyond compiler+MPI, we put those
 dependencies here.
-* libMesh: boost, hdf5, tbb, vtk
+* libMesh: boost, hdf5, vtk
 * GRINS: libMesh, boost
 * QUESO: boost, gsl, glpk, hdf5
