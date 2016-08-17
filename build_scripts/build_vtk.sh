@@ -37,6 +37,7 @@ fi
 mkdir -p build
 cd build
 
+#-D BUILD_TESTING:BOOL=OFF \
 (cmake \
 -D BUILD_SHARED_LIBS:BOOL=ON \
 -D CMAKE_INSTALL_PREFIX:PATH=$VTK_DIR \

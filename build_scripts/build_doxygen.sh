@@ -25,11 +25,9 @@ cd $BUILDDIR
 
 tar -xzf $UBCESLAB_SWENV_PREFIX/sourcesdir/doxygen/doxygen-$DOXYGEN_VERSION.src.tar.gz
 cd doxygen-$DOXYGEN_VERSION || exit 1
-./configure --prefix=$DOXYGEN_DIR 
-make -j ${NPROC:-1}
+cmake -DCMAKE_INSTALL_PREFIX:PATH=$DOXYGEN_DIR 
 
-rm -rf $DOXYGEN_DIR
-make install
+make all install
 
 cd $UBCESLAB_SWENV_PREFIX
 rm -rf $BUILDDIR || true
