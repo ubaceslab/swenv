@@ -1,4 +1,4 @@
-#!/bin/sh                                                                                                                                                                                                                                    
+#!/bin/sh
 set -e # Fail on first error
 
 DOXYGEN_VERSION=$1
@@ -25,7 +25,8 @@ cd $BUILDDIR
 
 tar -xzf $UBCESLAB_SWENV_PREFIX/sourcesdir/doxygen/doxygen-$DOXYGEN_VERSION.src.tar.gz
 cd doxygen-$DOXYGEN_VERSION || exit 1
-./configure --prefix=$DOXYGEN_DIR 
+
+cmake -DCMAKE_INSTALL_PREFIX:PATH=$DOXYGEN_DIR
 make -j ${NPROC:-1}
 
 rm -rf $DOXYGEN_DIR

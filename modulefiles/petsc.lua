@@ -1,6 +1,6 @@
 family("petsc")
 
-prereq("mpich","openblas")                                                                                                                                                                                                                           
+prereq("mpich","openblas")
 local hier = hierarchyA("petsc", 6)
 
 local compiler = hier[6]
@@ -27,6 +27,7 @@ end
 
 prepend_path( "PATH", pathJoin(petsc_prefix, "bin" ) )
 prepend_path( "LD_LIBRARY_PATH", pathJoin(petsc_prefix, "lib" ) )
+prepend_path( "LD_LIBRARY_PATH", pathJoin(petsc_prefix, "lib64" ) )
 
 setenv( "PETSC_BIN",  pathJoin(petsc_prefix, "bin" ) )
 setenv( "PETSC_LIB",  pathJoin(petsc_prefix, "lib" ) )
