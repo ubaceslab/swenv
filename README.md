@@ -1,6 +1,6 @@
 UB ACESLab Software Environment
 ==============================
-Build scripts, module files, etc. for setting up the UBCESLab environment
+Build scripts, module files, etc. for setting up the UBACESLab environment
 on various systems we use. Each of the build scripts encodes the version
 that is being built. If we need to update the version, then we need to rebuild
 the library and its dependencies.
