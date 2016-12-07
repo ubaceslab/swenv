@@ -1,4 +1,4 @@
-UB CESLab Software Environment
+UB ACESLab Software Environment
 ==============================
 Build scripts, module files, etc. for setting up the UBCESLab environment
 on various systems we use. Each of the build scripts encodes the version
