@@ -29,6 +29,7 @@ end
 
 prepend_path( "PATH", pathJoin(mpich_prefix, "bin" ) )
 prepend_path( "MANPATH", pathJoin(mpich_prefix, "share/man" ) )
+prepend_path( "LD_LIBRARY_PATH", pathJoin(mpich_prefix, "lib" ) )
 
 prepend_path("MODULEPATH", pathJoin( derived_modules_dir, compiler.."/"..compiler_version.."/"..mpi_implementation.."/"..mpi_version ) )
 
