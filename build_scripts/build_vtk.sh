@@ -3,6 +3,10 @@ set -e # Fail on first error
 
 export VTK_VERSION=$1
 
+export VTK_MAJOR=`echo $VTK_VERSION | cut -d . -f 1`
+export VTK_MINOR=`echo $VTK_VERSION | cut -d . -f 2`
+export VTK_MICRO=`echo $VTK_VERSION | cut -d . -f 3`
+
 CURRENT_DIR=$PWD
 
 mkdir -p ${UBCESLAB_SWENV_PREFIX:?undefined}/sourcesdir/vtk
@@ -17,7 +21,7 @@ fi
 module load cmake
 
 TOPDIR=${UBCESLAB_SWENV_PREFIX:?undefined}/libs/vtk
-export VTK_DIR=$TOPDIR/$VTK_VERSION/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}
+export VTK_DIR=$TOPDIR/$VTK_VERSION/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/${MPI_IMPLEMENTATION:?undefined}/${MPI_VERSION:?undefined}
 
 mkdir -p $UBCESLAB_SWENV_PREFIX/builddir
 BUILDDIR=`mktemp -d $UBCESLAB_SWENV_PREFIX/builddir/vtk-XXXXXX`
@@ -56,9 +60,12 @@ cd $UBCESLAB_SWENV_PREFIX
 rm -rf $BUILDDIR || true
 
 cd $CURRENT_DIR
-MODULEDIR=$UBCESLAB_SWENV_PREFIX/apps/lmod/derived_modulefiles/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/modulefiles/vtk
+MODULEDIR=$UBCESLAB_SWENV_PREFIX/apps/lmod/derived_modulefiles/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/${MPI_IMPLEMENTATION:?undefined}/${MPI_VERSION}/vtk
 mkdir -p $MODULEDIR
 
 echo "local version = \"$VTK_VERSION\"" > $MODULEDIR/$VTK_VERSION.lua
 echo "local libs_dir = \"$UBCESLAB_SWENV_PREFIX/libs\"" >> $MODULEDIR/$VTK_VERSION.lua
+echo "local version_major = \"$VTK_MAJOR\"" >> $MODULEDIR/$VTK_VERSION.lua
+echo "local version_minor = \"$VTK_MINOR\"" >> $MODULEDIR/$VTK_VERSION.lua
+
 cat ../modulefiles/vtk.lua >> $MODULEDIR/$VTK_VERSION.lua
