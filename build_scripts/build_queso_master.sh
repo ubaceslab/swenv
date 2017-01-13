@@ -1,17 +1,12 @@
 #!/bin/sh                                                                                                                                                                                                                                    
 set -e # Fail on first error
 
-export QUESO_VERSION=$1
+export QUESO_VERSION=master
 
 CURRENT_DIR=$PWD
 
 mkdir -p ${UBCESLAB_SWENV_PREFIX:?undefined}/sourcesdir/queso
 
-(cd $UBCESLAB_SWENV_PREFIX/sourcesdir/queso
-if [ ! -f queso-$QUESO_VERSION.tar.gz ]; then
-  wget https://github.com/libqueso/queso/releases/download/v$QUESO_VERSION/queso-$QUESO_VERSION.tar.gz 
-fi
-)
 
 TOPDIR=${UBCESLAB_SWENV_PREFIX:?undefined}/libs/queso
 export QUESO_DIR=$TOPDIR/$QUESO_VERSION/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/${MPI_IMPLEMENTATION:?undefined}/${MPI_VERSION:?undefined}/gsl/${GSL_VERSION:?undefined}/glpk/${GLPK_VERSION:?undefined}/boost/${BOOST_VERSION:?undefined}/hdf5/${HDF5_VERSION:?undefined}
@@ -20,9 +15,10 @@ mkdir -p $UBCESLAB_SWENV_PREFIX/builddir
 BUILDDIR=`mktemp -d $UBCESLAB_SWENV_PREFIX/builddir/queso-XXXXXX`
 cd $BUILDDIR
 
-tar -xzf ${UBCESLAB_SWENV_PREFIX:?undefined}/sourcesdir/queso/queso-$QUESO_VERSION.tar.gz
-cd queso-$QUESO_VERSION
-(./configure --with-hdf5=$HDF_DIR --without-trilinos --prefix=$QUESO_DIR 2>&1 && touch build_cmd_success) | tee configure.log
+git clone git://github.com/libqueso/queso.git
+cd queso
+
+(./bootstrap; ./configure --with-hdf5=$HDF_DIR --without-trilinos --prefix=$QUESO_DIR 2>&1 && touch build_cmd_success) | tee configure.log
 
 (make -j ${NPROC:-1} 2>&1 && touch build_cmd_success) | tee make.log
 rm build_cmd_success
@@ -44,5 +40,5 @@ echo "local libs_dir = \"$UBCESLAB_SWENV_PREFIX/libs\"" >> $MODULEDIR/$QUESO_VER
 echo "local gsl_version = \"$GSL_VERSION\"" >> $MODULEDIR/$QUESO_VERSION.lua
 echo "local glpk_version = \"$GLPK_VERSION\"" >> $MODULEDIR/$QUESO_VERSION.lua
 echo "local boost_version = \"$BOOST_VERSION\"" >> $MODULEDIR/$QUESO_VERSION.lua
-echo "local hdf5_version = \"$HDF5_VERSION\"" >> $MODULEDIR/$QUESO_VERSION.lua
+echo "local hdf5_version = \"$HDF5_VERSION\"" >> $MODULEDIR/$QUESO_VERSION.lua 
 cat ../modulefiles/queso.lua >> $MODULEDIR/$QUESO_VERSION.lua
