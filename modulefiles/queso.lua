@@ -2,6 +2,7 @@
 prereq( "gsl" )
 prereq( "glpk" )
 prereq( "boost" )
+prereq( "hdf5")
 
 conflict( "queso" )
 
@@ -17,7 +18,7 @@ help(
 "This module loads QUESO "..version.." master branch, compiled with "..compiler.." "..compiler_version.." and "..mpi_implementation.." "..mpi_version
 )
 
-local queso_arch = "queso/"..version.."/"..compiler.."/"..compiler_version.."/"..mpi_implementation.."/"..mpi_version.."/gsl/"..gsl_version.."/glpk/"..glpk_version.."/boost/"..boost_version
+local queso_arch = "queso/"..version.."/"..compiler.."/"..compiler_version.."/"..mpi_implementation.."/"..mpi_version.."/gsl/"..gsl_version.."/glpk/"..glpk_version.."/boost/"..boost_version.."/hdf5/"..hdf5_version
 
 local queso_dir = pathJoin( libs_dir, queso_arch )
 
