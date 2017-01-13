@@ -22,7 +22,7 @@ whatis( "Version: "..version..", built with "..compiler.." "..compiler_version )
 whatis( "Category: library" )
 whatis( "URL: http://freedesktop.org/wiki/Software/cppunit/" )
 
-local cppunit_base = libs_dir.."/cppunit/"..version.."/"..compiler.."/"..compiler_version
+local cppunit_base = libs_dir.."/"..name.."/"..version.."/"..compiler.."/"..compiler_version
 
 if isDir(cppunit_base) then
 else LmodError("module reports "..cppunit_base.." is not a directory! Module not loaded.")

@@ -41,4 +41,5 @@ mkdir -p $MODULEDIR
 
 echo "local version = \"$CPPUNIT_VERSION\"" > $MODULEDIR/$CPPUNIT_VERSION.lua
 echo "local libs_dir = \"$UBCESLAB_SWENV_PREFIX/libs\"" >> $MODULEDIR/$CPPUNIT_VERSION.lua
+echo "local name = \"cppunit\"" >> $MODULEDIR/$CPPUNIT_VERSION.lua
 cat ../modulefiles/cppunit.lua >> $MODULEDIR/$CPPUNIT_VERSION.lua
