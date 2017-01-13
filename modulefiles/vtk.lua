@@ -19,7 +19,7 @@ help(
 whatis( "Name: VTK" )
 whatis( "Version: "..version )
 
-local vtk_prefix  = libs_dir.."/vtk/"..version.."/"..compiler.."/"..compiler_version.."/"..mpi_implementation.."/"..mpi_version
+local vtk_prefix  = libs_dir.."/"..name.."/"..version.."/"..compiler.."/"..compiler_version.."/"..mpi_implementation.."/"..mpi_version
 
 if isDir(vtk_prefix) then
 else LmodError("module reports "..vtk_prefix.." is not a directory! Module not loaded.")
