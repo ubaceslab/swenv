@@ -1,5 +1,6 @@
 
-family("antioch")
+conflict("antioch")
+conflict("antioch-dbg")
 
 local hier = hierarchyA("antioch",5)
 local compiler = hier[5]
@@ -15,7 +16,12 @@ help(
 whatis( "Name: ANTIOCH" )
 whatis( "Version: "..version )
 
-local antioch_prefix  = libs_dir.."/antioch/"..version.."/"..compiler.."/"..compiler_version.."/gsl/"..gsl_version
+local antioch_prefix  = libs_dir.."/"..name.."/"..version.."/"..compiler.."/"..compiler_version.."/gsl/"..gsl_version
+
+if isDir(antioch_prefix) then
+else LmodError("module reports "..libmesh_dir.." is not a directory! Module not loaded.")
+end
+
 
 prepend_path( "PATH", pathJoin(antioch_prefix, "bin" ) )
 prepend_path( "LD_LIBRARY_PATH", pathJoin(antioch_prefix, "lib" ) )

@@ -16,7 +16,7 @@ fi
    ./bootstrap
 )
 
-TOPDIR=${UBCESLAB_SWENV_PREFIX:?undefined}/libs/antioch
+TOPDIR=${UBCESLAB_SWENV_PREFIX:?undefined}/libs/antioch-dbg
 export ANTIOCH_DIR=$TOPDIR/$ANTIOCH_VERSION/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/gsl/${GSL_VERSION:?undefined}
 
 mkdir -p $UBCESLAB_SWENV_PREFIX/builddir
@@ -24,7 +24,7 @@ BUILDDIR=`mktemp -d $UBCESLAB_SWENV_PREFIX/builddir/antioch-XXXXXX`
 cd $BUILDDIR
 
 
-($UBCESLAB_SWENV_PREFIX/sourcesdir/antioch/antioch-$ANTIOCH_VERSION/configure --prefix=$ANTIOCH_DIR 2>&1 && touch build_cmd_success) | tee configure.log
+($UBCESLAB_SWENV_PREFIX/sourcesdir/antioch/antioch-$ANTIOCH_VERSION/configure --prefix=$ANTIOCH_DIR CXXFLAGS="-g -O0 -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC" 2>&1 && touch build_cmd_success) | tee configure.log
 
 (make -j ${NPROC:-1} 2>&1 && touch build_cmd_success) | tee make.log
 rm build_cmd_success
@@ -40,10 +40,10 @@ cd $UBCESLAB_SWENV_PREFIX
 rm -rf $BUILDDIR || true
 
 cd $CURRENT_DIR
-MODULEDIR=$UBCESLAB_SWENV_PREFIX/apps/lmod/derived_modulefiles/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/modulefiles/antioch
+MODULEDIR=$UBCESLAB_SWENV_PREFIX/apps/lmod/derived_modulefiles/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/modulefiles/antioch-dbg
 mkdir -p $MODULEDIR
 
-echo "local name = \"antioch\"" > $MODULEDIR/$ANTIOCH_VERSION.lua
+echo "local name = \"antioch-dbg\"" > $MODULEDIR/$ANTIOCH_VERSION.lua
 echo "local version = \"$ANTIOCH_VERSION\"" >> $MODULEDIR/$ANTIOCH_VERSION.lua
 echo "local libs_dir = \"$UBCESLAB_SWENV_PREFIX/libs\"" >> $MODULEDIR/$ANTIOCH_VERSION.lua
 echo "local gsl_version = \"$GSL_VERSION\"" >> $MODULEDIR/$ANTIOCH_VERSION.lua
