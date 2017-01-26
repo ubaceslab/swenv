@@ -1,5 +1,6 @@
 
-family("vtk")                                                                                                                                                                                                                           
+conflict("vtk")
+conflict("vtk-dbg")
 
 local hier = hierarchyA("vtk", 6)
 
