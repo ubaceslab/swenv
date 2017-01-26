@@ -22,7 +22,7 @@ cd $BUILDDIR
 tar -xjf $UBCESLAB_SWENV_PREFIX/sourcesdir/libmesh/libmesh-$LIBMESH_VERSION.tar.bz2
 cd libmesh-$LIBMESH_VERSION
 
-(./configure METHODS='dbg devel opt' --prefix=$LIBMESH_DIR --enable-everything --with-metis=PETSc 2>&1 && touch build_cmd_success) | tee configure.log
+(./configure METHODS='dbg devel opt' --prefix=$LIBMESH_DIR --enable-everything --with-metis=PETSc --with-cppunit-prefix=${CPPUNIT_DIR:?undefined} --disable-glibcxx-debugging --with-vtk-lib=${VTK_LIB:?undefined} --with-vtk-include=${VTK_INCLUDE:?undefined} 2>&1 && touch build_cmd_success) | tee configure.log
 
 # Let's make sure we actually *found* the stuff we're trying to
 # configure with.  If we didn't, these grep commands will fail.
@@ -46,7 +46,8 @@ cd $CURRENT_DIR
 MODULEDIR=$UBCESLAB_SWENV_PREFIX/apps/lmod/derived_modulefiles/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/${MPI_IMPLEMENTATION:?undefined}/${MPI_VERSION}/libmesh
 mkdir -p $MODULEDIR
 
-echo "local version = \"$LIBMESH_VERSION\"" > $MODULEDIR/$LIBMESH_VERSION.lua
+echo "local name = \"libmesh\"" > $MODULEDIR/$LIBMESH_VERSION.lua
+echo "local version = \"$LIBMESH_VERSION\"" >> $MODULEDIR/$LIBMESH_VERSION.lua
 echo "local libs_dir = \"$UBCESLAB_SWENV_PREFIX/libs\"" >> $MODULEDIR/$LIBMESH_VERSION.lua
 echo "local petsc_version = \"$PETSC_VERSION\"" >> $MODULEDIR/$LIBMESH_VERSION.lua
 echo "local blas_implementation = \"$BLAS_IMPLEMENTATION\"" >> $MODULEDIR/$LIBMESH_VERSION.lua

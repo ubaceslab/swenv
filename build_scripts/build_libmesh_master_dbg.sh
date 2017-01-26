@@ -16,14 +16,14 @@ fi
 )
 
 
-TOPDIR=${UBCESLAB_SWENV_PREFIX:?undefined}/libs/libmesh
-export LIBMESH_DIR=$TOPDIR/$LIBMESH_VERSION/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/${MPI_IMPLEMENTATION:?undefined}/${MPI_VERSION:?undefined}/petsc/${PETSC_VERSION:?undefined}/${BLAS_IMPLEMENTATION:?undefined}/${BLAS_VERSION:?undefined}/boost/${BOOST_VERSION:?undefined}/hdf5/${HDF5_VERSION:?undefined}/vtk/${VTK_VERSION:?undefined}
+TOPDIR=${UBCESLAB_SWENV_PREFIX:?undefined}/libs/libmesh-dbg
+export LIBMESH_DIR=$TOPDIR/$LIBMESH_VERSION/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/${MPI_IMPLEMENTATION:?undefined}/${MPI_VERSION:?undefined}/petsc/${PETSC_VERSION:?undefined}/${BLAS_IMPLEMENTATION:?undefined}/${BLAS_VERSION:?undefined}/boost-dbg/${BOOST_VERSION:?undefined}/hdf5/${HDF5_VERSION:?undefined}/vtk-dbg/${VTK_VERSION:?undefined}
 
 mkdir -p $UBCESLAB_SWENV_PREFIX/builddir
 BUILDDIR=`mktemp -d $UBCESLAB_SWENV_PREFIX/builddir/libmesh-XXXXXX`
 cd $BUILDDIR
 
-($UBCESLAB_SWENV_PREFIX/sourcesdir/libmesh/libmesh-$LIBMESH_VERSION/configure METHODS='dbg devel opt' --prefix=$LIBMESH_DIR --enable-everything --with-metis=PETSc --with-cppunit-prefix=${CPPUNIT_DIR:?undefined} --disable-glibcxx-debugging --with-vtk-lib=${VTK_LIB:?undefined} --with-vtk-include=${VTK_INCLUDE:?undefined} 2>&1 && touch build_cmd_success) | tee configure.log
+($UBCESLAB_SWENV_PREFIX/sourcesdir/libmesh/libmesh-$LIBMESH_VERSION/configure METHODS='dbg' --prefix=$LIBMESH_DIR --enable-everything --with-metis=PETSc --with-cppunit-prefix=${CPPUNIT_DIR:?undefined} --with-vtk-lib=${VTK_LIB:?undefined} --with-vtk-include=${VTK_INCLUDE:?undefined} 2>&1 && touch build_cmd_success) | tee configure.log
 
 # Let's make sure we actually *found* the stuff we're trying to
 # configure with.  If we didn't, these grep commands will fail.
@@ -44,10 +44,10 @@ cd $UBCESLAB_SWENV_PREFIX
 rm -rf $BUILDDIR || true
 
 cd $CURRENT_DIR
-MODULEDIR=$UBCESLAB_SWENV_PREFIX/apps/lmod/derived_modulefiles/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/${MPI_IMPLEMENTATION:?undefined}/${MPI_VERSION}/libmesh
+MODULEDIR=$UBCESLAB_SWENV_PREFIX/apps/lmod/derived_modulefiles/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/${MPI_IMPLEMENTATION:?undefined}/${MPI_VERSION}/libmesh-dbg
 mkdir -p $MODULEDIR
 
-echo "local name = \"libmesh\"" > $MODULEDIR/$LIBMESH_VERSION.lua
+echo "local name = \"libmesh-dbg\"" > $MODULEDIR/$LIBMESH_VERSION.lua
 echo "local version = \"$LIBMESH_VERSION\"" >> $MODULEDIR/$LIBMESH_VERSION.lua
 echo "local libs_dir = \"$UBCESLAB_SWENV_PREFIX/libs\"" >> $MODULEDIR/$LIBMESH_VERSION.lua
 echo "local petsc_version = \"$PETSC_VERSION\"" >> $MODULEDIR/$LIBMESH_VERSION.lua
@@ -56,4 +56,4 @@ echo "local blas_version = \"$BLAS_VERSION\"" >> $MODULEDIR/$LIBMESH_VERSION.lua
 echo "local boost_version = \"$BOOST_VERSION\"" >> $MODULEDIR/$LIBMESH_VERSION.lua
 echo "local hdf5_version = \"$HDF5_VERSION\"" >> $MODULEDIR/$LIBMESH_VERSION.lua
 echo "local vtk_version = \"$VTK_VERSION\"" >> $MODULEDIR/$LIBMESH_VERSION.lua
-cat ../modulefiles/libmesh.lua >> $MODULEDIR/$LIBMESH_VERSION.lua
+cat ../modulefiles/libmesh_dbg.lua >> $MODULEDIR/$LIBMESH_VERSION.lua
