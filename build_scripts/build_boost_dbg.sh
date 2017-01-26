@@ -19,7 +19,7 @@ if [ ! -f boost_$BOOST_FILENAME.tar.bz2 ]; then
 fi
 )
 
-TOPDIR=${UBCESLAB_SWENV_PREFIX:?undefined}/libs/boost
+TOPDIR=${UBCESLAB_SWENV_PREFIX:?undefined}/libs/boost-dbg
 export BOOST_DIR=$TOPDIR/$BOOST_VERSION/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}
 
 mkdir -p $UBCESLAB_SWENV_PREFIX/builddir
@@ -37,16 +37,16 @@ fi
 
 rm -rf $BOOST_DIR
 
-./bjam -j ${NPROC:-1} install
+./bjam -j ${NPROC:-1} cxxflags="-D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC" install
 
 cd $UBCESLAB_SWENV_PREFIX
 rm -rf $BUILDDIR || true
 
 cd $CURRENT_DIR
-MODULEDIR=$UBCESLAB_SWENV_PREFIX/apps/lmod/derived_modulefiles/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/modulefiles/boost
+MODULEDIR=$UBCESLAB_SWENV_PREFIX/apps/lmod/derived_modulefiles/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/modulefiles/boost-dbg
 mkdir -p $MODULEDIR
 
 echo "local version = \"$BOOST_VERSION\"" > $MODULEDIR/$BOOST_VERSION.lua
 echo "local libs_dir = \"$UBCESLAB_SWENV_PREFIX/libs\"" >> $MODULEDIR/$BOOST_VERSION.lua
-echo "local name = \"boost\"" >> $MODULEDIR/$BOOST_VERSION.lua
+echo "local name = \"boost-dbg\"" >> $MODULEDIR/$BOOST_VERSION.lua
 cat ../modulefiles/boost.lua >> $MODULEDIR/$BOOST_VERSION.lua
