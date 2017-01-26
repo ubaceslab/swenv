@@ -1,5 +1,6 @@
 
 conflict("cppunit")
+conflict("cppunit-dbg")
 
 local hier = hierarchyA("cppunit", 5)
 
