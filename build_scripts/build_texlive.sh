@@ -9,11 +9,9 @@ CURRENT_DIR=$PWD
 
 mkdir -p ${UBCESLAB_SWENV_PREFIX:?undefined}/sourcesdir/texlive
 
+# We always need to download - can't use old install scripts
 (cd $UBCESLAB_SWENV_PREFIX/sourcesdir/texlive
-
-if [ ! -f install-tl-unx.tar.gz  ]; then
-  wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz 
-fi
+curl -LO http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 )
 
 mkdir -p $UBCESLAB_SWENV_PREFIX/builddir
@@ -39,7 +37,11 @@ done < $CURRENT_DIR/texlive.profile > ./texlive.profile
 
 cd $CURRENT_DIR
 
+# Remove build turds
 rm -rf $BUILDDIR
+
+# Remove sources because we can't reuse it for newer TexLive
+rm -rf $UBCESLAB_SWENV_PREFIX/sourcesdir/texlive
 
 MODULEDIR=$UBCESLAB_SWENV_PREFIX/apps/lmod/modulefiles/texlive
 mkdir -p $MODULEDIR
