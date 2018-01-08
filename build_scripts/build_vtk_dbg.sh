@@ -48,9 +48,9 @@ cd build
 -D VTK_Group_MPI:BOOL=ON \
 -D CMAKE_CXX_FLAGS="-D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC" \
 $BUILDDIR/VTK-$VTK_VERSION 2>&1 && touch build_cmd_success) | tee configure.log
-rm build_cmd_success
+#rm build_cmd_success
 (make -j ${NPROC:-1} all 2>&1 && touch build_cmd_success) | tee make.log
-rm build_cmd_success
+#rm build_cmd_success
 rm -rf $VTK_DIR
 make install
 

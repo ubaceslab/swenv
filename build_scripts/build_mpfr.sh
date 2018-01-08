@@ -10,7 +10,7 @@ mkdir -p ${UBCESLAB_SWENV_PREFIX:?undefined}/sourcesdir/mpfr
 
 (cd $UBCESLAB_SWENV_PREFIX/sourcesdir/mpfr
 if [ ! -f mpfr-$MPFR_VERSION.tar.bz2 ]; then
-  wget http://www.mpfr.org/mpfr-current/mpfr-$MPFR_VERSION.tar.bz2
+  wget http://www.mpfr.org/mpfr-$MPFR_VERSION/mpfr-$MPFR_VERSION.tar.bz2
 fi
 )
 
