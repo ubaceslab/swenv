@@ -27,7 +27,7 @@ tar xzf ../../sourcesdir/cmake/v$CMAKE_VERSION.tar.gz
 mkdir build
 cd build
 
-(../CMake-$CMAKE_VERSION/bootstrap --prefix=$CMAKE_DIR 2>&1 && touch build_cmd_success) | tee configure.log
+(../CMake-$CMAKE_VERSION/bootstrap --prefix=$CMAKE_DIR --system-curl 2>&1 && touch build_cmd_success) | tee configure.log
 rm build_cmd_success
 (make -j ${NPROC:-1} 2>&1 && touch build_cmd_success) | tee make.log
 rm build_cmd_success
