@@ -1,7 +1,6 @@
                                                                                                                                                                                                                                              
 conflict("cantera")
-
-prereq("boost")
+conflict("cantera-dbg")
 
 local hier = hierarchyA("cantera", 5)
 
@@ -23,7 +22,7 @@ whatis( "Name: Cantera chemistry library" )
 whatis( "Version: "..version..", built with "..compiler.." "..compiler_version )
 whatis( "Category: library" )
 
-local cantera_base = libs_dir.."/cantera/"..version.."/"..compiler.."/"..compiler_version.."/boost/"..boost_version
+local cantera_base = libs_dir.."/"..name.."/"..version.."/"..compiler.."/"..compiler_version.."/boost/"..boost_version
 
 if isDir(cantera_base) then
 else LmodError("module reports "..cantera_base.." is not a directory! Module not loaded.")

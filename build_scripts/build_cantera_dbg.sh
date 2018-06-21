@@ -13,7 +13,7 @@ if [ ! -f cantera-$CANTERA_VERSION.tar.gz ]; then
 fi
 )
 
-TOPDIR=${UBCESLAB_SWENV_PREFIX:?undefined}/libs/cantera
+TOPDIR=${UBCESLAB_SWENV_PREFIX:?undefined}/libs/cantera-dbg
 export CANTERA_DIR=$TOPDIR/$CANTERA_VERSION/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/boost/${BOOST_VERSION:?undefined}
 
 mkdir -p $UBCESLAB_SWENV_PREFIX/builddir
@@ -28,7 +28,7 @@ sed -i 's/::isinf(tmp)/std::isinf(tmp)/' src/base/checkFinite.cpp
 
 rm -rf $CANTERA_DIR
 
-(scons -j ${NPROC:-1} build prefix=$CANTERA_DIR python_package=none boost_inc_dir=$BOOST_DIR/include boost_lib_dir=$BOOST_DIR/lib 2>&1 && touch build_cmd_success) | tee configure.log
+(scons -j ${NPROC:-1} build prefix=$CANTERA_DIR python_package=none boost_inc_dir=$BOOST_DIR/include boost_lib_dir=$BOOST_DIR/lib debug=yes optimize=no cxx_flags="-g -O0 -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC" 2>&1 && touch build_cmd_success) | tee configure.log
 rm build_cmd_success
 
 (scons -j ${NPROC:-1} install 2>&1 && touch build_cmd_success) | tee build.log
@@ -40,10 +40,10 @@ cd $UBCESLAB_SWENV_PREFIX
 rm -rf $BUILDDIR || true
 
 cd $CURRENT_DIR
-MODULEDIR=$UBCESLAB_SWENV_PREFIX/apps/lmod/derived_modulefiles/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/modulefiles/cantera
+MODULEDIR=$UBCESLAB_SWENV_PREFIX/apps/lmod/derived_modulefiles/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/modulefiles/cantera-dbg
 mkdir -p $MODULEDIR
 
-echo "local name = \"cantera\"" > $MODULEDIR/$CANTERA_VERSION.lua
+echo "local name = \"cantera-dbg\"" > $MODULEDIR/$CANTERA_VERSION.lua
 echo "local version = \"$CANTERA_VERSION\"" >> $MODULEDIR/$CANTERA_VERSION.lua
 echo "local libs_dir = \"$UBCESLAB_SWENV_PREFIX/libs\"" >> $MODULEDIR/$CANTERA_VERSION.lua
 echo "local boost_version = \"$BOOST_VERSION\"" >> $MODULEDIR/$CANTERA_VERSION.lua
