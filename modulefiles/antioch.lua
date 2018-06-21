@@ -19,7 +19,7 @@ whatis( "Version: "..version )
 local antioch_prefix  = libs_dir.."/"..name.."/"..version.."/"..compiler.."/"..compiler_version.."/gsl/"..gsl_version
 
 if isDir(antioch_prefix) then
-else LmodError("module reports "..libmesh_dir.." is not a directory! Module not loaded.")
+else LmodError("module reports "..antioch_prefix.." is not a directory! Module not loaded.")
 end
 
 
