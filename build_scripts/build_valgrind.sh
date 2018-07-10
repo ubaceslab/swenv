@@ -11,7 +11,7 @@ mkdir -p ${UBCESLAB_SWENV_PREFIX:?undefined}/sourcesdir/valgrind
 
 (cd $UBCESLAB_SWENV_PREFIX/sourcesdir/valgrind
 if [ ! -f valgrind-$VALGRIND_VERSION.tar.bz2 ]; then
-  wget http://valgrind.org/downloads/valgrind-$VALGRIND_VERSION.tar.bz2 
+  wget ftp://sourceware.org/pub/valgrind/valgrind-$VALGRIND_VERSION.tar.bz2 
 fi
 )
 

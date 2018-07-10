@@ -1,5 +1,5 @@
 #!/bin/bash
 
-GDB_VERSION=7.8.2
+GDB_VERSION=8.0.1
 
 ./build_gdb.sh $GDB_VERSION

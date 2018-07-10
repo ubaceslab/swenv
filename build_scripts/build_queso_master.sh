@@ -18,7 +18,7 @@ cd $BUILDDIR
 git clone git://github.com/libqueso/queso.git
 cd queso
 
-(./bootstrap; ./configure --with-hdf5=$HDF_DIR --without-trilinos --prefix=$QUESO_DIR 2>&1 && touch build_cmd_success) | tee configure.log
+(./bootstrap; ./configure --with-hdf5=$HDF_DIR --without-trilinos --prefix=$QUESO_DIR --enable-debug=yes CXXFLAGS="-g -O0 -Wall" 2>&1 && touch build_cmd_success) | tee configure.log
 
 (make -j ${NPROC:-1} 2>&1 && touch build_cmd_success) | tee make.log
 rm build_cmd_success
