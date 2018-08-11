@@ -11,7 +11,7 @@ mkdir -p ${UBCESLAB_SWENV_PREFIX:?undefined}/sourcesdir/texlive
 
 # We always need to download - can't use old install scripts
 (cd $UBCESLAB_SWENV_PREFIX/sourcesdir/texlive
-curl -LO http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+curl -LO ftp://tug.org/historic/systems/texlive/2017/install-tl-unx.tar.gz 
 )
 
 mkdir -p $UBCESLAB_SWENV_PREFIX/builddir
@@ -33,7 +33,7 @@ do
 done < $CURRENT_DIR/texlive.profile > ./texlive.profile
 
 # Run TeXLive installer
-./install-tl --profile=./texlive.profile
+./install-tl --profile=./texlive.profile --repository=ftp://tug.org/historic/systems/texlive/2017/tlnet-final
 
 cd $CURRENT_DIR
 

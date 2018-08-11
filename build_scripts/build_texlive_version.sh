@@ -1,5 +1,5 @@
 #!/bin/bash
 
-TEXLIVE_VERSION=2016
+TEXLIVE_VERSION=2017
 
 ./build_texlive.sh $TEXLIVE_VERSION
