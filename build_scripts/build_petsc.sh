@@ -1,4 +1,5 @@
-#!/bin/sh                                                                                                                                                                                                                                    
+#!/bin/sh
+
 set -e # Fail on first error
 
 export PETSC_VERSION=$1
@@ -9,7 +10,7 @@ mkdir -p ${UBCESLAB_SWENV_PREFIX:?undefined}/sourcesdir/petsc
 
 (cd $UBCESLAB_SWENV_PREFIX/sourcesdir/petsc
 if [ ! -f petsc-lite-$PETSC_VERSION.tar.gz  ]; then
-  wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-$PETSC_VERSION.tar.gz 
+  wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-$PETSC_VERSION.tar.gz
 fi
 )
 
@@ -57,8 +58,8 @@ make clean
 rm build_cmd_success
 
 make install
-mv configure.log $PETSC_INSTALL_DIR
-mv make.log $PETSC_INSTALL_DIR
+mv $PETSC_ARCH/lib/petsc/conf/configure.log $PETSC_INSTALL_DIR
+mv $PETSC_ARCH/lib/petsc/conf/make.log $PETSC_INSTALL_DIR
 
 # Build opt version
 export PETSC_INSTALL_DIR=$PETSC_PREFIX/opt
@@ -92,8 +93,8 @@ make clean
 rm build_cmd_success
 
 make install
-mv configure.log $PETSC_INSTALL_DIR
-mv make.log $PETSC_INSTALL_DIR
+mv $PETSC_ARCH/lib/petsc/conf/configure.log $PETSC_INSTALL_DIR
+mv $PETSC_ARCH/lib/petsc/conf/make.log $PETSC_INSTALL_DIR
 
 cd $UBCESLAB_SWENV_PREFIX
 rm -rf $BUILDDIR || true

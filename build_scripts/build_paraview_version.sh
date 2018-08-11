@@ -1,5 +1,5 @@
 #!/bin/bash
 
-PARAVIEW_VERSION=4.3.1
+PARAVIEW_VERSION=5.4.1
 
 ./build_paraview.sh $PARAVIEW_VERSION

@@ -32,4 +32,4 @@ setenv( "LIBMESH_DIR", libmesh_dir )
 setenv( "LIBMESH_VERSION", version )
 
 prepend_path( "PATH", pathJoin( libmesh_dir, "bin" ) )
-prepend_path( "LD_LIBRARY_PATH",  pathJoin( libmesh_dir.."lib" ) )
+prepend_path( "LD_LIBRARY_PATH",  pathJoin( libmesh_dir, "lib" ) )
