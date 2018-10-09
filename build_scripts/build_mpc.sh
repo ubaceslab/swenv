@@ -9,7 +9,7 @@ mkdir -p ${UBCESLAB_SWENV_PREFIX:?undefined}/sourcesdir/mpc
 
 (cd $UBCESLAB_SWENV_PREFIX/sourcesdir/mpc
 if [ ! -f mpc-$MPC_VERSION.tar.gz ]; then
-  wget http://www.multiprecision.org/mpc/download/mpc-$MPC_VERSION.tar.gz
+  wget https://ftp.gnu.org/gnu/mpc/mpc-$MPC_VERSION.tar.gz
 fi
 )
 
