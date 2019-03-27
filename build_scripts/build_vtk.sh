@@ -1,4 +1,4 @@
-#!/bin/sh                                                                                                                                                                                                                                    
+#!/bin/sh
 set -e # Fail on first error
 
 export VTK_VERSION=$1
@@ -13,12 +13,12 @@ mkdir -p ${UBCESLAB_SWENV_PREFIX:?undefined}/sourcesdir/vtk
 
 (cd $UBCESLAB_SWENV_PREFIX/sourcesdir/vtk
 if [ ! -f v$VTK_VERSION.tar.gz  ]; then
-  wget https://github.com/Kitware/VTK/archive/v$VTK_VERSION.tar.gz 
+  wget https://github.com/Kitware/VTK/archive/v$VTK_VERSION.tar.gz
 fi
 )
 
 # We need CMake
-module load cmake
+#module load cmake
 
 TOPDIR=${UBCESLAB_SWENV_PREFIX:?undefined}/libs/vtk
 export VTK_DIR=$TOPDIR/$VTK_VERSION/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/${MPI_IMPLEMENTATION:?undefined}/${MPI_VERSION:?undefined}

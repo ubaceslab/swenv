@@ -1,4 +1,4 @@
-#!/bin/sh                                                                                                                                                                                                                                    
+#!/bin/sh
 set -e # Fail on first error
 
 export SCONS_VERSION=$1
@@ -9,7 +9,7 @@ mkdir -p ${UBCESLAB_SWENV_PREFIX:?undefined}/sourcesdir/scons
 
 (cd $UBCESLAB_SWENV_PREFIX/sourcesdir/scons
 if [ ! -f scons-$SCONS_VERSION.tar.gz ]; then
-  wget http://prdownloads.sourceforge.net/scons/scons-$SCONS_VERSION.tar.gz 
+  wget http://prdownloads.sourceforge.net/scons/scons-$SCONS_VERSION.tar.gz
 fi
 )
 
@@ -24,7 +24,7 @@ cd scons-$SCONS_VERSION
 
 rm -rf $SCONS_DIR
 
-(python setup.py install --prefix=$SCONS_DIR 2>&1 && touch build_cmd_success) | tee build.log
+(python2.7 setup.py install --prefix=$SCONS_DIR 2>&1 && touch build_cmd_success) | tee build.log
 rm build_cmd_success
 
 mv build.log $SCONS_DIR

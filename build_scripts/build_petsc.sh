@@ -15,7 +15,7 @@ fi
 )
 
 # We need CMake
-module load cmake
+#module load cmake
 
 TOPDIR=${UBCESLAB_SWENV_PREFIX:?undefined}/libs/petsc
 export PETSC_PREFIX=$TOPDIR/$PETSC_VERSION/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/${MPI_IMPLEMENTATION:?undefined}/${MPI_VERSION:?undefined}/${BLAS_IMPLEMENTATION:?undefined}/${BLAS_VERSION:?undefined}
@@ -38,10 +38,11 @@ if [ ${UBCESLAB_SYSTEMTYPE:?undefined} = "ccr" ]; then
    export PETSC_LDFLAGS="-lpmi"
 fi
 
-./config/configure.py  \
+python2.7 ./config/configure.py  \
 --with-make-np=${NPROC:?4} \
 --prefix=$PETSC_INSTALL_DIR \
 --with-shared-libraries=1 \
+--with-cxx-dialect=C++11 \
 --with-mpi-dir=${MPI_DIR:?undefined} \
 --with-mumps=true --download-mumps=1 \
 --with-metis=true --download-metis=1 \
@@ -71,11 +72,12 @@ rm -rf $PETSC_INSTALL_DIR
 # PETSc wants the directory to be there
 mkdir -p $PETSC_INSTALL_DIR
 
-./config/configure.py  \
+python2.7 ./config/configure.py  \
 --with-make-np=${NPROC:?4} \
 --prefix=$PETSC_INSTALL_DIR \
 --with-debugging=false --COPTFLAGS='-O3 -mavx' --CXXOPTFLAGS='-O3 -mavx' --FOPTFLAGS='-O3' \
 --with-shared-libraries=1 \
+--with-cxx-dialect=C++11 \
 --with-mpi-dir=${MPI_DIR:?undefined} \
 --with-mumps=true --download-mumps=1 \
 --with-metis=true --download-metis=1 \
@@ -97,7 +99,7 @@ mv $PETSC_ARCH/lib/petsc/conf/configure.log $PETSC_INSTALL_DIR
 mv $PETSC_ARCH/lib/petsc/conf/make.log $PETSC_INSTALL_DIR
 
 cd $UBCESLAB_SWENV_PREFIX
-rm -rf $BUILDDIR || true
+#rm -rf $BUILDDIR || true
 
 cd $CURRENT_DIR
 MODULEDIR=$UBCESLAB_SWENV_PREFIX/apps/lmod/derived_modulefiles/${COMPILER:?undefined}/${COMPILER_VERSION:?undefined}/${MPI_IMPLEMENTATION:?undefined}/${MPI_VERSION}/petsc
