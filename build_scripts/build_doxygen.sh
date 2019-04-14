@@ -11,7 +11,7 @@ mkdir -p ${UBCESLAB_SWENV_PREFIX:?undefined}/sourcesdir/doxygen
 
 (cd $UBCESLAB_SWENV_PREFIX/sourcesdir/doxygen
 if [ ! -f doxygen-$DOXYGEN_VERSION.src.tar.gz ]; then
-  wget http://ftp.stack.nl/pub/users/dimitri/doxygen-$DOXYGEN_VERSION.src.tar.gz
+  wget http://doxygen.nl/files/doxygen-$DOXYGEN_VERSION.src.tar.gz
 fi
 )
 
