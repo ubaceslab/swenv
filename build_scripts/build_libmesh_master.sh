@@ -12,6 +12,7 @@ if [ ! -d libmesh-$LIBMESH_VERSION ]; then
    git clone git://github.com/libMesh/libmesh.git ./libmesh-$LIBMESH_VERSION
 fi
    cd libmesh-$LIBMESH_VERSION
+   git submodule update --init
    git pull origin master
 )
 
